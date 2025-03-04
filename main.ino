@@ -8,7 +8,7 @@
 #define VCC_PIN A3
 #define BATTERY_PIN A3  
 
-// Настройки дисплея
+
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1); 
@@ -22,13 +22,13 @@ void setup() {
 
   Serial.begin(9600);
 
-  // Инициализация дисплея
+
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  
     Serial.println(F("Не удалось найти дисплей SSD1306"));
     while (true);
   }
 
-  // Приветственный экран
+
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
@@ -66,7 +66,7 @@ void loop() {
 
   display.clearDisplay();
 
-  // Вывод данных
+  
   display.setCursor(0, 0);
   display.print("DATA+ ");
   if (dataPlus < 50) {  
@@ -102,6 +102,10 @@ void loop() {
 
   
   drawBatteryIndicator(batteryVoltage);
+
+  display.display();
+  delay(500);
+}
 
   display.display();
   delay(500);
